@@ -1,0 +1,70 @@
+.multiSelectStyle {
+    padding: 10px 16px;
+    background-color: #202437;
+    border: 1px solid #2A2F47;
+    border-radius: 10px;
+    max-width: 306px;
+    width: 306px;
+    margin-right: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.multiSelectStyle__input:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+
+.chips {
+    border: 1px solid #EE748F;
+    border-radius: 6px;
+    color: #EE748F;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+    height: 26px;
+    max-height: 26px;
+    margin-right: 4px;
+}
+
+.chips__title {
+    font-size: 11px;
+}
+
+.chips-logo {
+    width: 17px;
+    height: 17px;
+    border-radius: 17px;
+    background-color: #EE748F;
+    color: white;
+}
+
+.chips__close:hover {
+    color: #DBE1E6;
+}
+
+.suggestion-list {
+    position: absolute;
+    background-color: #2A2F47;
+    width: 306px;
+    border-radius: 7px;
+}
+
+
+.suggestion-list__item {
+    padding: 12px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.suggestion-list__item:hover {
+    border: 1px solid #EE748F;
+    border-radius: 6px;
+}
+
+.suggestion-list__title {
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 300px;
+    white-space: nowrap;
+}
