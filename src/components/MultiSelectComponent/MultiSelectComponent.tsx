@@ -3,20 +3,22 @@ import { Box, Flex } from '@chakra-ui/layout'
 import './MultiSelectComponent.css'
 
 import { CloseIcon, EmailIcon } from '@chakra-ui/icons'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { searchUser } from '../../lib/api'
 import { useToast } from '@chakra-ui/toast'
+import { InviteListContext } from '../../pages/IndexPage/IndexPage'
 
 type MultiSelectProps = {
     setIsInviteDisabled: (val: boolean) => void
 };
 
 const MultiSelectComponent: React.FC<MultiSelectProps> = (props) => {
-
     const [inviteList, setInviteList] = useState<Array<any>>([]);
     const [suggestion, setSuggestion] = useState<Array<any>>([]);
     const [currentTyping, setCurrentTyping] = useState<string>('');
+    const [indexProposition, setIndexProposition] = useState<number>(0);
     const [isValide, setIsValide] = useState<boolean>(false);
+    const listContext = useContext(InviteListContext)
     const divRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const toast = useToast()
@@ -56,24 +58,35 @@ const MultiSelectComponent: React.FC<MultiSelectProps> = (props) => {
             list.push({ data: suggestion[index], isEmail: true })
         }
         setSuggestion(list);
+        listContext?.setList(list);
         setCurrentTyping('');
         setSuggestion([]);
+        setIndexProposition(0);
         props.setIsInviteDisabled(false);
         if (inputRef && inputRef.current) {
-            inputRef.current?.focus()
+            inputRef.current?.focus();
         }
     }
 
     const handleKeyDown = (event: any) => {
-        if (event.key === 'Enter') {
-            if (isValide) {
-                let list = inviteList;
-                list.push({ data: { email: currentTyping }, isEmail: true });
-                setSuggestion(list);
-                setCurrentTyping('');
-                setSuggestion([]);
-                setIsValide(false);
-                props.setIsInviteDisabled(false);
+        if (isValide || suggestion.length) {
+            switch (event.key) {
+                case 'Enter':
+                    addToInviteList(indexProposition);
+                    setIsValide(false);
+                    break;
+                case 'ArrowUp':
+                    if (indexProposition >= suggestion.length - 1) {
+                        setIndexProposition(indexProposition - 1)
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (indexProposition < suggestion.length - 1) {
+                        setIndexProposition(indexProposition + 1)
+                    }
+                    break
+                default:
+                    break;
             }
         }
     }
@@ -137,10 +150,10 @@ const MultiSelectComponent: React.FC<MultiSelectProps> = (props) => {
                             return (
                                 <div key={key}>
                                     {sug.firstName ?
-                                        <Flex className='suggestion-list__item' key={key} onClick={() => { addToInviteList(key) }}>
+                                        <Flex className={key === indexProposition ? 'suggestion-list__item-selecte' : 'suggestion-list__item'} key={key} onClick={() => { addToInviteList(key) }}>
                                             <Flex alignItems={'center'} justifyContent={'center'} mr={2} className='chips-logo'>{sug.firstName[0]}</Flex>
                                             <Box className='suggestion-list__title'>{sug.firstName}</Box>
-                                        </Flex> : <Flex className='suggestion-list__item' key={key} onClick={() => { addToInviteList(key) }}>
+                                        </Flex> : <Flex className={key  === indexProposition ? 'suggestion-list__item-selecte' : 'suggestion-list__item'} key={key} onClick={() => { addToInviteList(key) }}>
                                             <EmailIcon mr={2} />
                                             <Box className='suggestion-list__title'> {sug.email}</Box>
                                         </Flex>

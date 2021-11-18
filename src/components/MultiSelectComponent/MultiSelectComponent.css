@@ -62,6 +62,14 @@
     border-radius: 6px;
 }
 
+.suggestion-list__item-selecte {
+    padding: 12px;
+    cursor: pointer;
+    align-items: center;
+    border: 1px solid #EE748F;
+    border-radius: 6px;
+}
+
 .suggestion-list__title {
     text-overflow: ellipsis;
     overflow: hidden; 
