@@ -45,17 +45,17 @@ const IndexPage = () => {
     return (
         <InviteListContext.Provider value={value}>
             <Flex direction={'column'} position={'absolute'}>
-                    {
-                        invitationList && invitationList.map((sug, key) => {
-                            return (
-                                <div key={key}>
-                                    {sug.data.email}
-                                </div>)
-                        })
-                    }
+                {
+                    invitationList && invitationList.map((sug, key) => {
+                        return (
+                            <div key={key}>
+                                {sug.data.email}
+                            </div>)
+                    })
+                }
             </Flex>
             <Flex alignItems={'center'} justifyContent={'center'} height={'100vh'}>
-                <Button _hover={{background: '#EE748F'}} onClick={onOpen} backgroundColor={'#47475E'} color={'#E7ECF0'}>Invite teammates</Button>
+                <Button _hover={{ background: '#EE748F' }} onClick={onOpen} backgroundColor={'#47475E'} color={'#E7ECF0'}>Invite teammatessssss</Button>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose} isCentered size={'xl'}>
                 <ModalOverlay />
@@ -66,7 +66,7 @@ const IndexPage = () => {
                         <Box color={'#8C9DB5'} fontSize={'15px'} mb={4}>Send members an email invitation to join this workspace</Box>
                         <Flex alignItems={'center'}>
                             <MultiSelectComponent setIsInviteDisabled={setIsInviteDisabled} />
-                            <Button _hover={{background: '#2C54EA', opacity: '0.8'}} onClick={sendInvitation} disabled={isInviteDisabled} backgroundColor={'#2C54EA'} borderRadius={'10px'} p={'9px 20px'} fontSize={'13px'} fontWeight={'bold'} w={'78px'}>Invite</Button>
+                            <Button _hover={{ background: '#2C54EA', opacity: '0.8' }} onClick={sendInvitation} disabled={isInviteDisabled} backgroundColor={'#2C54EA'} borderRadius={'10px'} p={'9px 20px'} fontSize={'13px'} fontWeight={'bold'} w={'78px'}>Invite</Button>
                         </Flex>
                     </ModalBody>
                 </ModalContent>
