@@ -50,11 +50,11 @@ const IndexPage = () => {
                 <meta property="og:type" content="video.movie" />
                 <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
                 <meta property="og:image" content={ArtosPreview} />
-                <meta name="description" content={'test de ouf de dingues'} />
+                {/* <meta name="description" content={'test de ouf de dingues'} /> */}
 
                 <meta name="twitter:title" content="ARTOS: NFT OS built on Tezos " />
                 <meta name="twitter:image" content={ArtosPreview} />
-                <meta name="twitter:description" content={'test de ouf de dingues'} />
+                {/* <meta name="twitter:description" content={'test de ouf de dingues'} /> */}
 
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
