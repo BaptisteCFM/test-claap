@@ -25,7 +25,8 @@ const TestPage = () => {
     const [isInviteDisabled, setIsInviteDisabled] = useState<boolean>(true);
     const value = { list, setList };
     const [invitationList, setInvitationList] = useState<Array<any>>([]);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [count, setCount] = useState(0);
+    const { isOpen, onClose } = useDisclosure();
     const toast = useToast();
 
     const sendInvitation = () => {
@@ -49,11 +50,11 @@ const TestPage = () => {
                 <meta property="og:type" content="video.movie" />
                 <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
                 <meta property="og:image" content={ArtosPreview} />
-                <meta name="description" content={'JADORE C"EST PAS DES LOL'} />
+                <meta name="description" content={`JADORE C"EST PAS DES LOL${count}`} />
 
                 <meta name="twitter:title" content="ARTOS: NFT OS built on Tezos " />
                 <meta name="twitter:image" content={ArtosPreview} />
-                <meta name="twitter:description" content={'JADORE C"EST PAS DES LOL'} />
+                <meta name="twitter:description" content={`JADORE C"EST PAS DES LOL${count}`} />
 
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
@@ -67,8 +68,9 @@ const TestPage = () => {
                     })
                 }
             </Flex>
+            <h1>Count: {count}</h1>
             <Flex alignItems={'center'} justifyContent={'center'} height={'100vh'}>
-                <Button _hover={{ background: '#EE748F' }} onClick={onOpen} backgroundColor={'#47475E'} color={'#E7ECF0'}>lol</Button>
+                <Button _hover={{ background: '#EE748F' }} onClick={() => setCount(count + 1)} backgroundColor={'#47475E'} color={'#E7ECF0'}>lol</Button>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose} isCentered size={'xl'}>
                 <ModalOverlay />
