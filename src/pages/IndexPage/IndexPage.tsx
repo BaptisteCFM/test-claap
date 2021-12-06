@@ -12,7 +12,8 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import MultiSelectComponent from '../../components/MultiSelectComponent/MultiSelectComponent'
 import { createContext, useState } from 'react'
 import { useToast } from '@chakra-ui/toast'
-
+import { Helmet } from "react-helmet";
+import ArtosPreview from '../../assets/artos_preview.png'
 interface ListContextInterface {
     list: Array<any>,
     setList: React.Dispatch<React.SetStateAction<any[]>>,
@@ -44,6 +45,19 @@ const IndexPage = () => {
 
     return (
         <InviteListContext.Provider value={value}>
+            <Helmet>
+                <meta property="og:title" content="ARTOS: NFT OS built on Tezos" />
+                <meta property="og:type" content="video.movie" />
+                <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+                <meta property="og:image" content={ArtosPreview} />
+                <meta name="description" content={'test de ouf de dingues'} />
+
+                <meta name="twitter:title" content="ARTOS: NFT OS built on Tezos " />
+                <meta name="twitter:image" content={ArtosPreview} />
+                <meta name="twitter:description" content={'test de ouf de dingues'} />
+
+                <meta name="twitter:card" content="summary_large_image" />
+            </Helmet>
             <Flex direction={'column'} position={'absolute'}>
                 {
                     invitationList && invitationList.map((sug, key) => {
